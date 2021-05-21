@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Module Check
+    </title>
+</head>
+<body>
+{% include "navbar.html" %}
+<script src="static/running/tf.min.js">
+</script>
+<script src="static/running/tf-automl.min.js">
+</script>
+<div>
+    <h1>Module Image</h1>
+    <img id="targetImg" crossorigin="anonymous" src="static/d.jpg">
+</div>
+<br><hr><br>
+
+{% if user.is_authenticated %}
+<script>
+async function run()
+ { const model = await tf.automl.loadImageClassification('static/running/model.json');
+  const image = document.getElementById('targetImg');
+  const predictions = await model.classify(image);
+  console.log(predictions); // Show the resulting object on the page.
+  const pre = document.createElement('pre');
+  pre.textContent = JSON.stringify(predictions, null, 2);
+  document.body.append(pre); }
+
+  run();
+</script>
+{% else %}
+    로그인 해주세요!
+{% endif %}
+</body>
+</html>
