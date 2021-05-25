@@ -1,38 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>
-        Module Check
-    </title>
-</head>
-<body>
-{% include "navbar.html" %}
-<script src="static/running/tf.min.js">
-</script>
-<script src="static/running/tf-automl.min.js">
-</script>
-<div>
-    <h1>Module Image</h1>
-    <img id="targetImg" crossorigin="anonymous" src="static/d.jpg">
-</div>
-<br><hr><br>
+<!DOCTYPE html lang="ko">
+<html>
+    <head>
+        <link rel="stylesheet" href="static/style.css" />
+    </head>
+    <body>
+    {% include "navbar.html" %}
+        <div>Teachable Machine Image Model</div>
 
-{% if user.is_authenticated %}
-<script>
-async function run()
- { const model = await tf.automl.loadImageClassification('static/running/model.json');
-  const image = document.getElementById('targetImg');
-  const predictions = await model.classify(image);
-  console.log(predictions); // Show the resulting object on the page.
-  const pre = document.createElement('pre');
-  pre.textContent = JSON.stringify(predictions, null, 2);
-  document.body.append(pre); }
+        <button type="button" onclick="predict()">동작</button>
+        <script
+            class="jsbin"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+        ></script>
+        <div class="file-upload">
+            <button
+                class="file-upload-btn"
+                type="button"
+                onclick="$('.file-upload-input').trigger( 'click' )"
+            >
+                Add Image
+            </button>
 
-  run();
-</script>
-{% else %}
-    로그인 해주세요!
+            <div class="image-upload-wrap">
+                <input
+                    class="file-upload-input"
+                    type="file"
+                    onchange="readURL(this);"
+                    accept="image/*"
+                />
+                <div class="drag-text">
+                    <h3>Drag and drop a file or select add Image</h3>
+                </div>
+            </div>
+            <div class="file-upload-content">
+                <img class="file-upload-image" id="sensor_image" src="#" alt="your image" />
+                <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image">
+                        Remove <span class="image-title">Uploaded Image</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="webcam-container"></div>
+        <div id="label-container"></div>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+        <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.image-upload-wrap').hide();
+
+                        $('.file-upload-image').attr('src', e.target.result);
+                        $('.file-upload-content').show();
+
+                        $('.image-title').html(input.files[0].name);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    removeUpload();
+                }
+            }
+
+            function removeUpload() {
+                $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+                $('.file-upload-content').hide();
+                $('.image-upload-wrap').show();
+            }
+
+            $('.image-upload-wrap').bind('dragover', function () {
+                $('.image-upload-wrap').addClass('image-dropping');
+            });
+            $('.image-upload-wrap').bind('dragleave', function () {
+                $('.image-upload-wrap').removeClass('image-dropping');
+            });
+        </script>
+
+        {% if user.is_authenticated %}
+        <script type="text/javascript">
+            const URL = 'https://teachablemachine.withgoogle.com/models/C446-XCjP/';
+
+            let model, webcam, labelContainer, maxPredictions;
+
+            async function init() {
+                const modelURL = URL + 'model.json';
+                const metadataURL = URL + 'metadata.json';
+
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+
+                labelContainer = document.getElementById('label-container');
+                for (let i = 0; i < maxPredictions; i++) {
+                    labelContainer.appendChild(document.createElement('div'));
+                }
+            }
+
+            // run the webcam image through the image model
+            async function predict() {
+                var image = document.getElementById('sensor_image');
+                const prediction = await model.predict(sensor_image, false);
+                for (let i = 0; i < maxPredictions; i++) {
+                    const classPrediction =
+                        prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
+                    labelContainer.childNodes[i].innerHTML = classPrediction;
+                }
+            }
+            init()
+        </script>
+    {% else %}
+       로그인 해주세요!
 {% endif %}
-</body>
+    </body>
 </html>
