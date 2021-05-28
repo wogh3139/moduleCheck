@@ -4,22 +4,25 @@
         <link rel="stylesheet" href="static/style.css" />
     </head>
     <body>
-    {% include "navbar.html" %}
-        <div>Teachable Machine Image Model</div>
-
-        <button type="button" onclick="predict()">동작</button>
         <script
             class="jsbin"
             src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
         ></script>
+
         <div class="file-upload">
-            <button
-                class="file-upload-btn"
-                type="button"
-                onclick="$('.file-upload-input').trigger( 'click' )"
-            >
-                Add Image
-            </button>
+            <hr>
+            <div class="title">
+                Teachable Machine Image Model
+            </div>
+            <hr>
+                    <li class="login">
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a>
+                            {% else %}
+                            <a href="{% url 'common:login' %}">로그인</a>
+                            {% endif %}
+                    </li>
+
 
             <div class="image-upload-wrap">
                 <input
@@ -32,17 +35,49 @@
                     <h3>Drag and drop a file or select add Image</h3>
                 </div>
             </div>
+            <div class="btn-collect">
+
+                <button
+                    class="reload"
+                    type="button"
+                    onclick="location.reload()">
+                     새로고침
+                </button>
+
+                <button
+                    class="file-upload-btn"
+                    type="button"
+                    onclick="$('.file-upload-input').trigger( 'click' )"
+                >
+                Add Image
+                </button>
+
+                <button type="button" onclick="removeUpload()" class="remove-image">
+                        Remove
+                </button>
+                <div>
+                    <button class="run-btn" type="button" onclick="predict()">동작</button>
+                </div>
+                   {% if user.is_authenticated %}
+                <div class="running-set">
+                        <div id="webcam-container"></div>
+                        <div class="result" id="label-container"></div>
+                </div>
+
+                 {% else %}
+                <div class="running-set">
+                    <div class="result">
+                        로그인 x
+                        </div>
+                </div>
+                {% endif %}
+            </div>
+
+
             <div class="file-upload-content">
                 <img class="file-upload-image" id="sensor_image" src="#" alt="your image" />
-                <div class="image-title-wrap">
-                    <button type="button" onclick="removeUpload()" class="remove-image">
-                        Remove <span class="image-title">Uploaded Image</span>
-                    </button>
-                </div>
             </div>
-        </div>
-        <div id="webcam-container"></div>
-        <div id="label-container"></div>
+
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
         <script>
@@ -69,6 +104,7 @@
                 $('.file-upload-input').replaceWith($('.file-upload-input').clone());
                 $('.file-upload-content').hide();
                 $('.image-upload-wrap').show();
+                labelContainer.childNodes[1].innerHTML = "";
             }
 
             $('.image-upload-wrap').bind('dragover', function () {
@@ -102,16 +138,20 @@
             async function predict() {
                 var image = document.getElementById('sensor_image');
                 const prediction = await model.predict(sensor_image, false);
+                maxIndex = 0;
+
                 for (let i = 0; i < maxPredictions; i++) {
-                    const classPrediction =
-                        prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
-                    labelContainer.childNodes[i].innerHTML = classPrediction;
+                    if(prediction[i].probability.toFixed(2) > prediction[maxIndex].probability.toFixed(2)){
+                    maxIndex = i;
                 }
             }
+            labelContainer.childNodes[1].innerHTML = prediction[maxIndex].className;
+            }
+
             init()
+
         </script>
     {% else %}
-       로그인 해주세요!
-{% endif %}
+    {% endif %}
     </body>
 </html>
