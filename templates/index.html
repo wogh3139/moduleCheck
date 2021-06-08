@@ -326,13 +326,13 @@
 
         {% if user.is_authenticated %}
         <script type="text/javascript">
-            const URL = 'https://teachablemachine.withgoogle.com/models/4Jlr83lUJ/';
+
 
             let model, webcam, labelContainer, maxPredictions;
 
             async function init() {
-                const modelURL = URL + 'model.json';
-                const metadataURL = URL + 'metadata.json';
+                const modelURL = '\static/model.json';
+                const metadataURL ='\static/metadata.json';
 
                 model = await tmImage.load(modelURL, metadataURL);
                 maxPredictions = model.getTotalClasses();
