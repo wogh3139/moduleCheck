@@ -2,6 +2,22 @@
 <html>
     <head>
         <link rel="stylesheet" href="static/style.css" />
+        <link rel="stylesheet" href="static/bootstrap.min.css" />
+         <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      </style>
     </head>
     <body>
         <script
@@ -56,28 +72,221 @@
                         Remove
                 </button>
                 <div>
-                    <button class="run-btn" type="button" onclick="predict()">동작</button>
+                    <button value='innerHTML' class="run-btn" type="button" onclick="predict()">동작</button>
                 </div>
                    {% if user.is_authenticated %}
                 <div class="running-set">
                         <div id="webcam-container"></div>
-                        <div class="result" id="label-container"></div>
+                        <div class="result"></div>
                 </div>
 
                  {% else %}
                 <div class="running-set">
-                    <div class="result">
-                        로그인 x
-                        </div>
+
                 </div>
                 {% endif %}
+
             </div>
 
 
             <div class="file-upload-content">
                 <img class="file-upload-image" id="sensor_image" src="#" alt="your image" />
             </div>
+        </div>
+  <section class="py-5 text-center container">
+  </section>
 
+
+   <section class="py-5 text-center container>
+    <div class= "row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="bd-placeholder-img card-img-top" id="resultMax" width="100%" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></div>
+              <div id="label-containerMax" x="50%" y="50%" dy=".3em">No Image</div>
+            <div class="card-body">
+              <p class="card-text" id="text-containerMax"></p>
+                <div id='my_div'><span style='color:red'>설명</span></div>
+              <div class="d-flex justify-content-between align-items-center">
+
+              </div>
+                <small class="text-mutedMax"  id="probability-containerMax">0.00</small>
+            </div>
+          </div>
+        </div>
+       </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result0.png" class="bd-placeholde5r-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">4x4 Keypad</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container0">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result1.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">FZ2904</text></svg>
+
+            <div class="card-body">
+             <a class="card-text" href="https://www.notion.so/FZ2904-d8b2ae2f117b462d9d62fcfb87afd4de"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container1">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result2.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">HC-06</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container2">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result3.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">HC-SR04</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container3">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result4.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">KY-026</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container4">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result5.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">LCD 2004</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container5">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result6.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">LCD Keypad Shield</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/LCD-1602-LCD-keypad-Shield-7439be9c66e14672b9b4e9d2dce3c4dc"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container6">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result7.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">LED</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/LED-YWROBOT-ba424fee558e4e9d8818100e30177c9c"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container7">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result8.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">PM2008</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/PM2008-cbf6db32965d4ea39c10fd4e71d8d106"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container8">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result9.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">PPD42NS</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/PPD42NS-eb85f60f6b244b43b90b76ee841b9e44"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container9">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result10.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">RFID</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/RFID-RC522-94a41c808a8f4f82a49ffc87779834d6"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container10">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <div class="col">
+          <div class="card shadow-sm">
+            <img src = "\static/result11.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">SG90</text></svg>
+
+            <div class="card-body">
+              <a class="card-text" href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7"> 관련 예제 </a>
+              <div class="d-flex justify-content-between align-items-center">
+
+                <small class="text-muted" id="probability-container11">0.00</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
         <script>
@@ -128,13 +337,91 @@
                 model = await tmImage.load(modelURL, metadataURL);
                 maxPredictions = model.getTotalClasses();
 
-                labelContainer = document.getElementById('label-container');
-                for (let i = 0; i < maxPredictions; i++) {
-                    labelContainer.appendChild(document.createElement('div'));
-                }
+                textContainerMax = document.getElementById('text-containerMax');
+                textContainer0 = document.getElementById('text-container0');
+                textContainer1 = document.getElementById('text-container1');
+                textContainer2 = document.getElementById('text-container2');
+                textContainer3 = document.getElementById('text-container3');
+                textContainer4 = document.getElementById('text-container4');
+                textContainer5 = document.getElementById('text-container5');
+                textContainer6 = document.getElementById('text-container6');
+                textContainer7 = document.getElementById('text-container7');
+                textContainer8 = document.getElementById('text-container8');
+                textContainer9 = document.getElementById('text-container9');
+                textContainer10 = document.getElementById('text-container10');
+                textContainer11 = document.getElementById('text-container11');
+
+                labelContainerMax = document.getElementById('label-containerMax');
+
+                probabilityMax =document.getElementById('probability-containerMax');
+                probability0 =document.getElementById('probability-container0');
+                probability1 =document.getElementById('probability-container1');
+                probability2 =document.getElementById('probability-container2');
+                probability3 =document.getElementById('probability-container3');
+                probability4 =document.getElementById('probability-container4');
+                probability5 =document.getElementById('probability-container5');
+                probability6 =document.getElementById('probability-container6');
+                probability7 =document.getElementById('probability-container7');
+                probability8 =document.getElementById('probability-container8');
+                probability9 =document.getElementById('probability-container9');
+                probability10 =document.getElementById('probability-container10');
+                probability11 =document.getElementById('probability-container11');
+
+                var resultMax = document.getElementById('resultMax');
+
             }
 
             // run the webcam image through the image model
+
+            function setInnerHTML0() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue" white-space="nowrap">본 제품은 TTP229 정전식 터치 센서를 기반으로 디자인된 4x4 총 16개의 정전식 터치 키를 가지고 있는 센서입니다.<div>';
+            }
+            function setInnerHTML1() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 Arduino mega2560, uno ,r3 ,51 ,avr ,stm32 레드 라이트 dc 3.8-7 v fz2904 용 rcmall 광 지문 판독기 센서 모듈입니다<div>';
+            }
+            function setInnerHTML2() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 HC-06 블루투스 모듈로 블루투스를 이용하여 무선으로 시리얼 통신을 할 수 있게 하는 제품입니다.<div>';
+            }
+            function setInnerHTML3() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 초음파를 원리를 이용하여 거리측정기능이 있으며 측정거리는 20~5000mm 입니다.<div>';
+            }
+            function setInnerHTML4() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 자외선불꽃감지, 근적외선 불꽃감지, 적외선 불꽃감지 등의 다양한 유형이 존재하며 측정거리는 760~1100nm 입니다.<div>';
+            }
+            function setInnerHTML5() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 LCD 20x4 4핀(I2C) 모듈로 4핀(GND,VDD,SDA,SCL)을 I2C 통신으로 편리하게 제어할 수 있습니다.<div>';
+            }
+            function setInnerHTML6() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 버튼스위치와 1602(16x2) LCD가 같이 구성되어 있는 LCD 키패드 쉴드입니다.<div>';
+            }
+            function setInnerHTML7() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 빛을 전류를 빛으로 전환하는 기본적인 반도체 소자인 발광 다이오드(LED)입니다.<div>';
+            }
+            function setInnerHTML8() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 PM2008로 주위 미세먼지 농도를 알려주는 센서입니다. 미세먼지 수치(PM)는 GRIMM 방식과 TSI 방식 모두 지원합니다.<div>';
+            }
+            function setInnerHTML9() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 먼지 농도를 측정해 주변 환경의 공기질을 나타내주는 제품입니다. 미세먼지 수치(PM)는 Low Pulse Occupancy time (LPO time) 단위로 측정됩니다.<div>';
+            }
+            function setInnerHTML10() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 RFID로,무선주파수를 이용한 자동인식 기술 중 하나로 주파수를 이용해 태그안에 ID데이터를 저장하고 리더와 안테나를 이용해 태그가 부착된 사물을 추적, 판독, 관리 해주는 제품입니다.<div>';
+            }
+            function setInnerHTML11() {
+                    const element = document.getElementById('my_div');
+                    element.innerHTML = '<div style="color:blue">본 제품은 서보모터로, 단순히 정회전, 역회전만 하는 일반 모터와는 달리 회전각도를 제어할수 있으며, 현재의 회전 각도를 피드백하여 회전각도 상태를 알 수 있습니다.<div>';
+            }
+
             async function predict() {
                 var image = document.getElementById('sensor_image');
                 const prediction = await model.predict(sensor_image, false);
@@ -145,13 +432,90 @@
                     maxIndex = i;
                 }
             }
-            labelContainer.childNodes[1].innerHTML = prediction[maxIndex].className;
-            }
+            labelContainerMax.innerHTML = prediction[maxIndex].className;
 
-            init()
+            probabilityMax.innerHTML = prediction[maxIndex].probability.toFixed(2)*100;
+            probability0.innerHTML = prediction[0].probability.toFixed(2)*100;
+            probability1.innerHTML = prediction[1].probability.toFixed(2)*100;
+            probability2.innerHTML = prediction[2].probability.toFixed(2)*100;
+            probability3.innerHTML = prediction[3].probability.toFixed(2)*100;
+            probability4.innerHTML = prediction[4].probability.toFixed(2)*100;
+            probability5.innerHTML = prediction[5].probability.toFixed(2)*100;
+            probability6.innerHTML = prediction[6].probability.toFixed(2)*100;
+            probability7.innerHTML = prediction[7].probability.toFixed(2)*100;
+            probability8.innerHTML = prediction[8].probability.toFixed(2)*100;
+            probability9.innerHTML = prediction[9].probability.toFixed(2)*100;
+            probability10.innerHTML = prediction[10].probability.toFixed(2)*100;
+            probability11.innerHTML = prediction[11].probability.toFixed(2)*100;
+
+
+            if (maxIndex == 0){
+            resultMax.innerHTML = "<img src = \static/result0.png>";
+            setInnerHTML0();
+            }
+            else if (maxIndex == 1){
+            resultMax.innerHTML = "<img src = \static/result1.png>";
+            setInnerHTML1();
+            }
+            else if (maxIndex == 2){
+            resultMax.innerHTML = "<img src = \static/result2.png>";
+            setInnerHTML2();
+            }
+            else if (maxIndex == 3){
+            resultMax.innerHTML = "<img src = \static/result3.png>";
+            setInnerHTML3();
+            }
+            else if (maxIndex == 4){
+            resultMax.innerHTML = "<img src = \static/result4.png>";
+            setInnerHTML4();
+            }
+            else if (maxIndex == 5){
+            resultMax.innerHTML = "<img src = \static/result5.png>";
+            setInnerHTML5();
+            }
+            else if (maxIndex == 6){
+            resultMax.innerHTML = "<img src = \static/result6.png>";
+            setInnerHTML6();
+            }
+            else if (maxIndex == 7){
+            resultMax.innerHTML = "<img src = \static/result7.png>";
+            setInnerHTML7();
+            }
+            else if (maxIndex == 8){
+            resultMax.innerHTML = "<img src = \static/result8.png>";
+            setInnerHTML8();
+            }
+            else if (maxIndex == 9){
+            resultMax.innerHTML = "<img src = \static/result9.png>";
+            setInnerHTML9();
+            }
+            else if (maxIndex == 10){
+            resultMax.innerHTML = "<img src = \static/result10.png>";
+            setInnerHTML10();
+            }
+            else if (maxIndex == 11){
+            resultMax.innerHTML = "<img src = \static/result11.png>";
+            setInnerHTML11();
+            }
+            textContainerMax.innerHTML = '<a href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7">관련 예제</a>';
+            textContainer0.innerHTML = '<a href="https://www.notion.so/FZ2904-d8b2ae2f117b462d9d62fcfb87afd4de">관련 예제</a>';
+            textContainer1.innerHTML = '<a href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7">관련 예제</a>';
+            textContainer2.innerHTML = '<a href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7">관련 예제</a>';
+            textContainer3.innerHTML = '<a href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7">관련 예제</a>';
+            textContainer4.innerHTML = '<a href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7">관련 예제</a>';
+            textContainer5.innerHTML = '<a href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7">관련 예제</a>';
+            textContainer6.innerHTML = '<a href="https://www.notion.so/LCD-1602-LCD-keypad-Shield-7439be9c66e14672b9b4e9d2dce3c4dc">관련 예제</a>';
+            textContainer7.innerHTML = '<a href="https://www.notion.so/LED-YWROBOT-ba424fee558e4e9d8818100e30177c9c">관련 예제</a>';
+            textContainer8.innerHTML = '<a href="https://www.notion.so/PM2008-cbf6db32965d4ea39c10fd4e71d8d106">관련 예제</a>';
+            textContainer9.innerHTML = '<a href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7">관련 예제</a>';
+            textContainer10.innerHTML = '<a href="https://www.notion.so/TTP229-cd81a5b78444448b88c738542cb949a7">관련 예제</a>';
+            textContainer11.innerHTML = '<a href="https://www.notion.so/RFID-RC522-94a41c808a8f4f82a49ffc87779834d6">관련 예제</a>';
+            }
+        init()
 
         </script>
     {% else %}
+
     {% endif %}
     </body>
 </html>
